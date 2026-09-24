@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#075e54" />
+    <meta name="description" content="Leitor de QR Code de NFC-e" />
+    <title>Leitor NFC-e</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <header>
+        <p class="eyebrow">NFC-e</p>
+        <h1>Leitor de cupons</h1>
+        <p class="intro">Cole a URL do QR Code para consultar os itens e valores do cupom fiscal.</p>
+        <p id="server-status" class="server-status" role="status">Verificando servidor local…</p>
+      </header>
+
+      <section id="result-card" class="result-card hidden" aria-live="polite">
+        <div class="success-mark" aria-hidden="true">✓</div>
+        <div>
+          <p class="eyebrow">Cupom identificado</p>
+          <h2>Chave de acesso</h2>
+          <output id="access-key" class="access-key"></output>
+        </div>
+        <details>
+          <summary>Ver URL completa</summary>
+          <p id="full-url" class="full-url"></p>
+        </details>
+        <h3>Itens do cupom</h3>
+        <ul id="coupon-items" class="coupon-items"></ul>
+        <div class="button-grid">
+          <button id="copy-button" class="button primary" type="button">Copiar chave</button>
+          <button id="new-entry-button" class="button secondary" type="button">Inserir outra URL</button>
+        </div>
+      </section>
+
+      <section class="manual-card">
+        <h2>URL do cupom</h2>
+        <p class="helper">O portal da NFC-e será consultado para extrair os itens e valores.</p>
+        <label class="sr-only" for="manual-url">URL do QR Code</label>
+        <textarea id="manual-url" rows="3" placeholder="https://.../qrcode?p=...|3|1"></textarea>
+        <button id="manual-button" class="button secondary" type="button" disabled>Ler URL</button>
+      </section>
+
+      <section class="history-card" aria-labelledby="history-title">
+        <div class="section-heading">
+          <div>
+            <h2 id="history-title">Cupons capturados</h2>
+            <p id="history-count" class="helper">Nenhum cupom salvo.</p>
+          </div>
+          <button id="download-button" class="button secondary compact" type="button" disabled>Baixar CSV</button>
+        </div>
+        <ul id="history-list" class="history-list"></ul>
+      </section>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>
